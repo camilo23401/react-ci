@@ -13,14 +13,14 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: '12.x'
+      - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+          with:
+            heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+            heroku_app_name: "talleractions" #Must be unique in Heroku
+            heroku_email: "ca.garciav@uniandes.edu.co"  
       - name: npm install 
         run: npm install  
       - name: lint
         run: npm run eslint
       - name: Build
         run: npm run build
-      - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
-          with:
-            heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-            heroku_app_name: "talleractions" #Must be unique in Heroku
-            heroku_email: "ca.garciav@uniandes.edu.co"  
